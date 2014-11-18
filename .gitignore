@@ -4,13 +4,7 @@
 # User-specific files
 *.suo
 *.user
-*.userosscache
 *.sln.docstates
-*.log
-*.tlog
-
-# User-specific folders
-*.sln.ide/
 
 # Build results
 [Dd]ebug/
@@ -64,8 +58,6 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
-*.log
-*.tlog
 
 # Chutzpah Test files
 _Chutzpah*
@@ -77,8 +69,6 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
-*.log
-*.tlog
 
 # Visual Studio profiler
 *.psess
@@ -168,7 +158,6 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
-bower_components/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -192,3 +181,50 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+# =========================
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
