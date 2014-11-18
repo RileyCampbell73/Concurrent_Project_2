@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 		//check to see if its 6 digits
 
 	//loop through file and get all services for code
-	while (std::getline(file, str))
+	while (getline(file, str))
 	{
 		if (str.substr(0, 6) == argv[1])
 			serviceCoords.push_back(Coords(atof(str.substr(7, 11).c_str()), atof(str.substr(19, 11).c_str())));
@@ -59,7 +59,6 @@ int main(int argc, char* argv[])
 			iOver5++;
 			
 		}
-	
 	}
 
 	//report the findings
