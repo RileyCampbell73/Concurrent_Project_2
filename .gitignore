@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.log
+*.tlog
 
 # User-specific folders
 *.sln.ide/
@@ -62,6 +64,8 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+*.log
+*.tlog
 
 # Chutzpah Test files
 _Chutzpah*
@@ -73,6 +77,8 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+*.log
+*.tlog
 
 # Visual Studio profiler
 *.psess
