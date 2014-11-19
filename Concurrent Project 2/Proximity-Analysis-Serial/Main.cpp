@@ -1,4 +1,5 @@
 #include"Coords.h"
+#include <mpi.h>
 using namespace std;
 
 string findServiceNameFromFile (char* argumentServiceCode)
@@ -24,6 +25,10 @@ int main(int argc, char* argv[])
 	vector<Coords> serviceCoords;
 	ifstream file("services.dat");
 	string str;
+
+	MPI_Init( 0, 0 ); // intialize mpi for time
+
+	double startTime = MPI_Wtime();
 
 	//TODO: check for command line arguments here
 		//check to see if its 6 digits
@@ -82,6 +87,8 @@ int main(int argc, char* argv[])
 	
 	string serviceName = findServiceNameFromFile(argv[1]);
 	
+	// calculate time
+	double elapsedTime = MPI_Wtime() - startTime;
 
 	//report the findings
 	cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
@@ -89,7 +96,7 @@ int main(int argc, char* argv[])
 	cout << setw(30) << left << "Service: " << setw(16) << serviceName << endl;
 	cout << setw(30) << left << "Service Code: " << setw(16) << argv[1] << endl;
 	cout << setw(30) << left << "Number of Service Locations: " << setw(16) << serviceCoords.size() << endl;
-	cout << setw(30) << left << "Elapsed Time in Seconds: " << setw(16) <<"time here" << endl << endl;
+	cout << setw(30) << left << "Elapsed Time in Seconds: " << setw(16) << elapsedTime << endl << endl;
 	cout << setw(64) << right << "Aggregate Results for all 30,000 Addresses..." << endl << endl;
 	cout << setw(20) << left << "Nearest Service (KM)" << "  " << setw(14) << left << "# of Addresses" << "  " << setw(14) << left << "% of Addresses" << endl;
 	cout << setw(20) << left << "--------------------" << "  " << setw(14) << left << "--------------" << "  " << setw(14) << left << "--------------" << endl;
@@ -99,6 +106,6 @@ int main(int argc, char* argv[])
 	cout << setw(20) << right << " > 5" << "  " << setw(14) << right << iOver5 << "  " << setw(14) << right << setprecision(4) << (iOver5 / 30000.0) * 100 << endl;
 
 
-
+	MPI_Finalize();
 
 }
