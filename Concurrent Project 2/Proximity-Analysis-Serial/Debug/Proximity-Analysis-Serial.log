@@ -1,29 +1,13 @@
-<<<<<<< HEAD
-﻿Build started 11/20/2014 1:22:43 PM.
+﻿Build started 11/20/2014 2:21:36 PM.
      1>Project "C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Proximity-Analysis-Serial\Proximity-Analysis-Serial.vcxproj" on node 2 (Rebuild target(s)).
-=======
-﻿Build started 18/11/2014 6:59:50 PM.
-     1>Project "C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Proximity-Analysis-Serial\Proximity-Analysis-Serial.vcxproj" on node 2 (Build target(s)).
-       Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
->>>>>>> 6c2a87a166f206a850afbbef91baffe0c5a597f7
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
        Link:
-<<<<<<< HEAD
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.lib" /MACHINE:X86 Debug\Main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.exe" /INCREMENTAL /NOLOGO mpi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.lib" /MACHINE:X86 Debug\Main.obj
          Proximity-Analysis-Serial.vcxproj -> C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.exe
      1>Done Building Project "C:\Users\Riley4\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Proximity-Analysis-Serial\Proximity-Analysis-Serial.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.87
-=======
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.exe" /INCREMENTAL /NOLOGO mpi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.lib" /MACHINE:X86 Debug\Main.obj
-         Proximity-Analysis-Serial.vcxproj -> C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Debug\Proximity-Analysis-Serial.exe
-     1>Done Building Project "C:\Users\HaggyLappy\Documents\GitHub\Concurrent_Project_2\Concurrent Project 2\Proximity-Analysis-Serial\Proximity-Analysis-Serial.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:02.11
->>>>>>> 6c2a87a166f206a850afbbef91baffe0c5a597f7
+Time Elapsed 00:00:00.96

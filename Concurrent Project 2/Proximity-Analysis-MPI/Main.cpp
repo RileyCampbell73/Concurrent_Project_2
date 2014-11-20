@@ -104,10 +104,20 @@ void processMaster(int numProcs)
 	}
 	cout << "finished" << endl;
 	Msg_t records[4];
+	records[0].count = 1;
+	records[1].count = 2;
+	records[2].count = 3;
+	records[3].count = 4;
+
+	Msg_t allrecords[2][4];
+	//cout << allrecords[0][0].count << endl;
 	MPI_Datatype recType = createMsgType();
 	MPI_Status status;
-	MPI_Recv(records, 1, recType, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-	cout << records[0].count << endl;//returns memory space
+	//MPI_Recv(records, 1, recType, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+	//MPI_Reduce(records, records, 1, recType, MPI_SUM, 0, MPI_COMM_WORLD);
+
+	MPI_Gather(records, 1, recType, allrecords, 1, recType, 0, MPI_COMM_WORLD);
+	cout << allrecords[0][0].count << endl;//returns memory space
 	//report the findings
 	//cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
 	//cout << setw(64) << right << "---------------------------------------------------------" << endl << endl;
@@ -201,10 +211,14 @@ void processSlave(int rank, int numProcs)
 		}
 		fileagain.seekg(ilineBytes * (numProcs -1), ios::cur);
 	}
-	cout << "finished" << endl;
+	cout << "slave finished" << endl;
 	MPI_Datatype recType = createMsgType();
 	//replace 4 w some diff count+
-	MPI_Send(records, 1, recType, 0, 1, MPI_COMM_WORLD);
+	//MPI_Send(records, 1, recType, 0, 1, MPI_COMM_WORLD);
+	//MPI_Reduce(records, records, 1, recType, MPI_SUM, 0, MPI_COMM_WORLD);
+	Msg_t* junk[4];
+	cout <<"SLAVE "<< records[0].count << endl;
+	MPI_Gather(records, 1, recType, junk, 1, recType,0, MPI_COMM_WORLD);
 	//report the findings
 	//cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
 	//cout << rank<<endl;
