@@ -14,10 +14,11 @@ MPI_Datatype createMsgType()
 {
 	// Setup the five arguments for a call to MPI_Type_struct()
 	int count = 1;	// 2 blocks
-	int blocklens[] = { 1, 1 };	//  1 int, 1 double
+	int blocklens[] = { 4, 4 };	//  1 int, 1 double
 	MPI_Aint offsets[2];
 	offsets[0] = offsetof(Msg_t, count); // offset in bytes to block 1
 	offsets[1] = offsetof(Msg_t, percentage); // offset in bytes to block 2
+
 	MPI_Datatype old_types[] = { MPI_INT, MPI_DOUBLE };	// input data types
 	MPI_Datatype t; // output data type
 
@@ -103,21 +104,42 @@ void processMaster(int numProcs)
 		fileagain.seekg(ilineBytes * (numProcs - 1), ios::cur);
 	}
 	cout << "finished" << endl;
-	Msg_t records[4];
+	Msg_t records[5];
 	records[0].count = 1;
 	records[1].count = 2;
 	records[2].count = 3;
 	records[3].count = 4;
+	records[4].count = 0;
+	records[0].percentage = 1.01;
+	records[1].percentage = 2.01;
+	records[2].percentage = 3.01;
+	records[3].percentage = 4.01;
 
-	Msg_t allrecords[2][4];
-	//cout << allrecords[0][0].count << endl;
+
+	Msg_t allrecords[10];
 	MPI_Datatype recType = createMsgType();
 	MPI_Status status;
-	//MPI_Recv(records, 1, recType, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-	//MPI_Reduce(records, records, 1, recType, MPI_SUM, 0, MPI_COMM_WORLD);
 
-	MPI_Gather(records, 1, recType, allrecords, 1, recType, 0, MPI_COMM_WORLD);
-	cout << allrecords[0][0].count << endl;//returns memory space
+
+	MPI_Gather(&records, 5, recType, allrecords, 5, recType, 0, MPI_COMM_WORLD);
+
+
+	cout << allrecords[0].percentage << endl;
+	cout << allrecords[1].percentage << endl;
+	cout << allrecords[2].percentage << endl;
+	cout << allrecords[3].percentage << endl;
+	cout << allrecords[4].count << endl;
+	cout << allrecords[5].count << endl;
+	cout << allrecords[6].count << endl;
+	cout << allrecords[7].count << endl;
+	cout << allrecords[8].count << endl;
+	cout << allrecords[9].count << endl;
+	cout << allrecords[10].count << endl;
+	cout << allrecords[11].count << endl;
+	cout << allrecords[12].count << endl;
+	cout << allrecords[13].count << endl;
+	cout << allrecords[14].count << endl;
+	MPI_Type_free(&recType);
 	//report the findings
 	//cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
 	//cout << setw(64) << right << "---------------------------------------------------------" << endl << endl;
@@ -172,11 +194,12 @@ void processSlave(int rank, int numProcs)
 
 	// Move the file pointer to MY first record
 	fileagain.seekg(ilineBytes * rank, ios::beg);
-	Msg_t records[4];
+	Msg_t records[5];
 	records[0].count = 0;
 	records[1].count = 0;
 	records[2].count = 0;
 	records[3].count = 0;
+	records[4].count = rank;
 	
 	//read file line by line
 	while (std::getline(fileagain, str))
@@ -213,12 +236,10 @@ void processSlave(int rank, int numProcs)
 	}
 	cout << "slave finished" << endl;
 	MPI_Datatype recType = createMsgType();
-	//replace 4 w some diff count+
-	//MPI_Send(records, 1, recType, 0, 1, MPI_COMM_WORLD);
-	//MPI_Reduce(records, records, 1, recType, MPI_SUM, 0, MPI_COMM_WORLD);
+
 	Msg_t* junk[4];
-	cout <<"SLAVE "<< records[0].count << endl;
-	MPI_Gather(records, 1, recType, junk, 1, recType,0, MPI_COMM_WORLD);
+	MPI_Gather(&records, 5, recType, junk, 5, recType, 0, MPI_COMM_WORLD);
+	MPI_Type_free(&recType);
 	//report the findings
 	//cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
 	//cout << rank<<endl;
