@@ -31,12 +31,34 @@ MPI_Datatype createMsgType()
 	return t;
 }
 
-void processMaster(int numProcs)
+string findServiceNameFromFile (char* argumentServiceCode)
+{
+	string serviceCode = argumentServiceCode;
+
+	ifstream serviceCodesFile("service-codes.csv");
+	string line;
+
+	while(getline(serviceCodesFile,line))
+	{
+		int stopPoint = line.find(',');
+
+		if( line.substr(0,stopPoint) == serviceCode )
+			return line.substr(stopPoint + 1);
+	}
+
+	return "NOT FOUND";
+}
+
+
+void processMaster(int numProcs, char* argumentServiceCode)
 {
 	//DO THE STUFF
 	//ONCE ITS PROCESSED ALL ITS RECORDS:
 		//RECIEVE ALL COLLEVTIVE INTERFACE MESSAGES
 		//DISPLAY RESULTS
+
+	//set the start time
+	double startTime = MPI_Wtime();
 
 	vector<Coords> serviceCoords;
 	ifstream file("services.dat");
@@ -121,8 +143,15 @@ void processMaster(int numProcs)
 	MPI_Status status;
 
 
+
 	MPI_Gather(&records, 5, recType, allrecords, 5, recType, 0, MPI_COMM_WORLD);
 
+
+// get the service name from the service code
+string serviceName = findServiceNameFromFile(argumentServiceCode);
+
+// calculate elapsed time
+double elapsedTime = MPI_Wtime() - startTime;
 
 	cout << allrecords[0].percentage << endl;
 	cout << allrecords[1].percentage << endl;
@@ -140,13 +169,15 @@ void processMaster(int numProcs)
 	cout << allrecords[13].count << endl;
 	cout << allrecords[14].count << endl;
 	MPI_Type_free(&recType);
+
+
 	//report the findings
 	//cout << setw(64) << right << "Proximites of Residental Addresses to Services in Toronto" << endl;
 	//cout << setw(64) << right << "---------------------------------------------------------" << endl << endl;
-	//cout << setw(30) << left << "Service: " << setw(16) << "idk yet" << endl;
+	//cout << setw(30) << left << "Service: " << setw(16) << serviceName << endl;
 	//cout << setw(30) << left << "Service Code: " << setw(16) << sServiceCode << endl;
 	//cout << setw(30) << left << "Number of Service Locations: " << setw(16) << serviceCoords.size() << endl;
-	//cout << setw(30) << left << "Elapsed Time in Seconds: " << setw(16) << "time here" << endl << endl;
+	//cout << setw(30) << left << "Elapsed Time in Seconds: " << setw(16) << elapsedTime<< endl << endl;
 	//cout << setw(64) << right << "Aggregate Results for all 30,000 Addresses..." << endl << endl;
 	//cout << setw(20) << left << "Nearest Service (KM)" << "  " << setw(14) << left << "# of Addresses" << "  " << setw(14) << left << "% of Addresses" << endl;
 	//cout << setw(20) << left << "--------------------" << "  " << setw(14) << left << "--------------" << "  " << setw(14) << left << "--------------" << endl;
@@ -273,7 +304,7 @@ int main(int argc, char* argv[])
 		MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 		sServiceCode = argv[1];
 		if (rank == 0)
-			processMaster(numProcs);
+			processMaster(numProcs, argv[1]);
 		else
 			processSlave(rank, numProcs);
 
